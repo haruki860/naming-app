@@ -12,7 +12,10 @@
     "build-storybook": "storybook build",
     "test": "vitest",
     "testrun": "vitest run",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "fix": "npm run format && npm run lint:fix",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -43,7 +46,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-storybook": "^0.6.13",
     "happy-dom": "^11.2.0",
-    "husky": "^8.0.0",
+    "husky": "^8.0.3",
     "jsdom": "^22.1.0",
     "lint-staged": "^14.0.1",
     "postcss": "^8.4.29",
@@ -54,7 +57,7 @@
     "vite": "^4.4.5",
     "vitest": "^0.34.4"
   },
-    "lint-staged": {
-      "*.{ts,tsx}": "prettier --write"
-    }
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "prettier --write"
+  }
 }
