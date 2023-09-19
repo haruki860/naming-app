@@ -1,5 +1,4 @@
 import React from 'react'
-// import "./DropDown.css"
 
 interface DropdownProps {
   options: string[]
