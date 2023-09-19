@@ -1,12 +1,12 @@
 import React from 'react'
 
-interface DropdownProps {
+interface Props {
   options: string[]
   value: string
   onChange: (selectedValue: string) => void
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, value, onChange }) => {
+const Dropdown: React.FC<Props> = ({ options, value, onChange }) => {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onChange(event.target.value)
   }
