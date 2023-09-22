@@ -6,7 +6,7 @@ interface Props {
   onChange: (selectedValue: string) => void
 }
 
-const Dropdown: React.FC<Props> = ({ options, value, onChange }) => {
+const dropDown: React.FC<Props> = ({ options, value, onChange }) => {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onChange(event.target.value)
   }
@@ -26,4 +26,4 @@ const Dropdown: React.FC<Props> = ({ options, value, onChange }) => {
   )
 }
 
-export default Dropdown
+export default dropDown
