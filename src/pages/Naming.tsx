@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Dropdown from '../components/pulldown/DropDown'
+import Dropdown from '../components/dropDown/dropDown'
 const naming: React.FC = () => {
   const optionsLanguage = ['C', 'Java', 'Go']
   const optionsKinds = ['関数', '変数', '構造体', 'const', 'クラス']
