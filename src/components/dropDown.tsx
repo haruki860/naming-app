@@ -1,7 +1,10 @@
 import React from 'react'
 
 interface Props {
-  options: string[]
+  options: {
+    label: string
+    value: string
+  }[]
   value: string
   onChange: (selectedValue: string) => void
 }
@@ -18,8 +21,8 @@ const dropDown: React.FC<Props> = ({ options, value, onChange }) => {
       onChange={handleChange}
     >
       {options.map((option, index) => (
-        <option key={index} value={option}>
-          {option}
+        <option key={index} value={option.value}>
+          {option.label}
         </option>
       ))}
     </select>
