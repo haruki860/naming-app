@@ -1,25 +1,17 @@
 import React from 'react'
+import { UseFormRegisterReturn } from 'react-hook-form'
 
 interface Props {
   options: {
     label: string
     value: string
   }[]
-  value: string
-  onChange: (selectedValue: string) => void
+  register: UseFormRegisterReturn
 }
 
-const dropDown: React.FC<Props> = ({ options, value, onChange }) => {
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    onChange(event.target.value)
-  }
-
+const dropDown: React.FC<Props> = ({ options, register }) => {
   return (
-    <select
-      className="border border-gray-dark w-28 text-lg"
-      value={value}
-      onChange={handleChange}
-    >
+    <select className="border border-gray-dark w-28 text-lg" {...register}>
       {options.map((option, index) => (
         <option key={index} value={option.value}>
           {option.label}

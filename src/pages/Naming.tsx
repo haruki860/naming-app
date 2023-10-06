@@ -1,11 +1,13 @@
-import { useForm, Controller } from 'react-hook-form'
 import React from 'react'
+import { useForm } from 'react-hook-form'
 import Dropdown from '../components/dropDown'
-type FormValues = {
-  language: string
-  kinds: string
-  export: string
+
+export type FormValues = {
+  language: 'C' | 'Java' | 'Go'
+  kinds: 'func' | 'variable' | 'struct' | 'const' | 'class'
+  export: 'yes' | 'no'
 }
+
 export const Naming: React.FC = () => {
   const optionsLanguage = [
     { label: 'C', value: 'C' },
@@ -24,87 +26,35 @@ export const Naming: React.FC = () => {
     { label: '無', value: 'no' },
   ]
 
-  const [selectedValues, setSelectedValues] = React.useState<FormValues>({
-    language: '',
-    kinds: '',
-    export: '',
-  })
-  const { control, handleSubmit } = useForm<FormValues>()
-  const onSubmit = (data: FormValues) => {
-    // フォームデータの操作などの処理を行うことができます
-    console.log(data)
+  const { register, handleSubmit } = useForm<FormValues>()
+  const onSubmit = (values: FormValues) => {
+    alert(JSON.stringify(values, null, 2))
   }
+
   return (
     <>
-      <h1 className="font-bold text-xl text-center  pt-8 mb-10">
+      <h1 className="font-bold text-xl text-center pt-8 mb-10">
         作成したいクラスの条件を入力してください
       </h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex justify-center gap-x-32">
-          <div>
+          <div className="flex">
             <h2 className="text-xl">言語</h2>
-            <Controller
-              name="language"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <Dropdown
-                  options={optionsLanguage}
-                  value={selectedValues.language}
-                  onChange={(selectedValue) => {
-                    field.onChange(selectedValue)
-                    setSelectedValues({
-                      ...selectedValues,
-                      language: selectedValue,
-                    })
-                  }}
-                />
-              )}
+            <Dropdown
+              register={register('language')}
+              options={optionsLanguage}
             />
           </div>
-          <div>
+          <div className="flex">
             <h3 className="text-xl">種類</h3>
-            <Controller
-              name="kinds"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <Dropdown
-                  options={optionsKinds}
-                  value={selectedValues.kinds}
-                  onChange={(selectedValue) => {
-                    field.onChange(selectedValue)
-                    setSelectedValues({
-                      ...selectedValues,
-                      kinds: selectedValue,
-                    })
-                  }}
-                />
-              )}
-            />
+            <Dropdown register={register('kinds')} options={optionsKinds} />
           </div>
-          <div>
+          <div className="flex">
             <h4 className="text-xl">export</h4>
-            <Controller
-              name="export"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <Dropdown
-                  options={optionsExport}
-                  value={selectedValues.export}
-                  onChange={(selectedValue) => {
-                    field.onChange(selectedValue)
-                    setSelectedValues({
-                      ...selectedValues,
-                      export: selectedValue,
-                    })
-                  }}
-                />
-              )}
-            />
+            <Dropdown register={register('export')} options={optionsExport} />
           </div>
         </div>
+        <button type="submit">Submit</button>
       </form>
     </>
   )
