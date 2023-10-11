@@ -11,7 +11,7 @@ interface Props {
 
 const dropDown: React.FC<Props> = ({ options, register }) => {
   return (
-    <select className="border border-gray-dark w-28 text-lg" {...register}>
+    <select className="border border-black w-28 text-lg" {...register}>
       {options.map((option, index) => (
         <option key={index} value={option.value}>
           {option.label}

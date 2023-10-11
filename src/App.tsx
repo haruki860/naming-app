@@ -1,5 +1,5 @@
 import React from 'react'
-import { Naming } from './pages/naming'
+import { Naming } from './pages/Naming'
 
 const App: React.FC = () => {
   return <Naming />
